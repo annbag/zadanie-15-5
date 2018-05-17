@@ -9,7 +9,24 @@ App = React.createClass({
             searchingText: '',
             gif: {}
         };
-    },        
+    },    
+
+/*    getGif: function(searchingText, callback) {  // 1.
+        var url = GIPHY_API_URL + '/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;  // 2.
+        var xhr = new XMLHttpRequest();  // 3.
+        xhr.open('GET', url);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+               var data = JSON.parse(xhr.responseText).data; // 4.
+                var gif = {  // 5.
+                    url: data.fixed_width_downsampled_url,
+                    sourceUrl: data.url
+                };
+                callback(gif);  // 6.
+            }
+        };
+        xhr.send();
+    },*/    
 
     getGif: function(searchingText) {
         return new Promise(
@@ -48,8 +65,8 @@ App = React.createClass({
                     gif: gif,  
                     searchingText: searchingText  
                 });
-            }.bind(this))
-            .catch(function (error) {
+            }.bind(this)) //bind?? ->Ręczna zmiana kontekstu za pomocą metody bind
+            .catch(function (error) { //catch-> niespełniony
                 console.log(error);
             }).bind(this);        
     },
